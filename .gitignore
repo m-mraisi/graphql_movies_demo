@@ -1,0 +1,15 @@
+# Keep environment variables out of version control
+.env
+# ignore node_modules
+node_modules/
+
+# ignore build output
+dist/
+
+# IDE/Editor specific files
+.idea/
+.vscode/
+
+# OS specific files
+.DS_Store
+Thumbs.db
