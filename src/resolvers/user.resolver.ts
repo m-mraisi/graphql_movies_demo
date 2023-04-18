@@ -6,11 +6,8 @@ import { singIn } from '../jwt/jwt';
 
 export const userResolver = {
   Query: {
-    getUsers: async () => {
-      const users = await db.user.findMany();
-      return users;
-    },
     user: async (_, { id }) => {
+      // look for user based on their id
       const user = await db.user.findUnique({ where: { id: parseInt(id) } });
 
       if (!user)
@@ -23,6 +20,7 @@ export const userResolver = {
   },
   Mutation: {
     signUp: async (_, { user }) => {
+      // the user can access this api without the need for authentication
       const { username, email, password } = user;
       const userExist = await db.user.findFirst({
         where: {
@@ -53,6 +51,7 @@ export const userResolver = {
       }
     },
     login: async (_, { user }) => {
+      // the user can access this api without the need for authentication
       const userFromDB = await userExist(user.email, user.password);
       if (userFromDB) {
         const token = singIn(userFromDB.id, userFromDB.email);

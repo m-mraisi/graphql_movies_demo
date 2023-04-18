@@ -60,10 +60,10 @@ export const reviewResolver = {
   Mutation: {
     createReview: async (_, { review }, context: any) => {
       try {
+        // getting the user from the context; user can only add one review per movie, and it has to be the logged in user
         const { user } = context;
-        console.log(user);
 
-        const { movieId, userId, rating, comment } = review;
+        const { movieId, rating, comment } = review;
 
         if (!movieId) {
           return throwCustomError(
@@ -108,6 +108,7 @@ export const reviewResolver = {
     },
     updateReview: async (_, { review }, context: any) => {
       try {
+        // Grabbing the logged in user from the context; the logged in user can only update their own reviews
         const { user } = context;
 
         const { movieId, rating, comment } = review;
@@ -156,6 +157,7 @@ export const reviewResolver = {
     },
     deleteReview: async (_, { movieId }, context: any) => {
       try {
+        // Grabbing the logged in user from the context; the logged in user can only delete their own reviews
         const { user } = context;
         const existingReview = await db.review.findFirst({
           where: {

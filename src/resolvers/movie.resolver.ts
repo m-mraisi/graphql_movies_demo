@@ -64,9 +64,8 @@ export const movieResolver = {
     },
 
     movie: async (_, { id }) => {
+      // look for a movie based on Id
       const movie = await db.movie.findUnique({ where: { id: parseInt(id) } });
-
-      console.log(movie);
 
       if (!movie)
         return throwCustomError('Movie not found', ErrorTypes.NOT_FOUND);

@@ -28,7 +28,6 @@ export const UserSchema = `#graphql
     }
 
     type Query{
-        getUsers: [User]
         user(id:ID!):User!
     }
 
