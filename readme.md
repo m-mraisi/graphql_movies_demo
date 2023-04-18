@@ -1,4 +1,4 @@
-# GraphQL API Readme
+# Apollo GraphQL API - Movies
 
 This project contains a GraphQL API with user and review resolvers. The API uses the Prisma ORM to interact with the database.
 
