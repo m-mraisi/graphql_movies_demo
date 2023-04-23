@@ -94,7 +94,7 @@ export const userResolver = {
           },
         };
       }
-      return { id: user.id };
+      return throwCustomError('User not found', ErrorTypes.NOT_FOUND);
     },
   },
 };
